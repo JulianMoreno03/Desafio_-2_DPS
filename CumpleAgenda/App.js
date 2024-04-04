@@ -1,12 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Login from "./Screens/Login"
+import SingUp from './Screens/SingUp';
+import Home from './Screens/Home';
+
+const Stack = createNativeStackNavigator();
+
+//DIRECIONES 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>EMPEZANDO</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName ="Inicio de sesion">
+        <Stack.Screen name="Inicio de sesion" component={Login} />
+        <Stack.Screen name="Crear Cuenta" component={SingUp} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
