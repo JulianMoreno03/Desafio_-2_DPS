@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity, Button } from 'react-native';
+//asynStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
@@ -9,23 +12,51 @@ import SingUp from './SingUp';
 
 export default function Login({navigation}) {
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
+  const handleLogin = async()=>{
+    try {
+       // Obtener los datos del usuario utilizando el correo electrónico como clave
+       const userData = await AsyncStorage.getItem(username);
+      if (userData) {
+        const user = JSON.parse(userData);
+         if (user.password === password) {
+           navigation.navigate('Salir');
+          } else { // Aquí estaba el error de sintaxis
+             alert('Error: Contraseña incorrecta');
+          }
+
+      } else {
+        alert('Error: Usuario no encontrado');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+      alert('Error: Ocurrió un error al iniciar sesión');
+    }
+  };
+
+  
   return(
     <View style={styles.container}>
       <Text style={styles.title} >AGENDA</Text>
       <TextInput
         style={styles.input}
+        value={username}
+        onChangeText={text => setUsername(text)}
         placeholder='Usuario'
       />
       <TextInput
         style={styles.input}
         placeholder='Contraseña'
+        value={password}
+        onChangeText={text => setPassword(text)}
         secureTextEntry={true}
       />
-      <TouchableOpacity>
-      <Button style={styles.btnLogin} title='INGRESAR' onPress={()=>navigation.navigate("Salir")} ></Button>
-
+      <TouchableOpacity style={styles.btnLogin} onPress={handleLogin}>
+        <Text style={styles.btnText}>INGRESAR</Text>
       </TouchableOpacity>
+
 
 
       <View style={styles.container_CrearCuenta}>
@@ -65,5 +96,13 @@ const styles = StyleSheet.create({
   container_CrearCuenta:{
     marginTop: '50%',
     borderRadius:20,
+  },
+  btnText:{
+    width:'80%',
+    paddingHorizontal:50,
+    paddingVertical:10,
+    borderRadius:12,
+    backgroundColor:'blue',
+    color:'white'
   }
 });
