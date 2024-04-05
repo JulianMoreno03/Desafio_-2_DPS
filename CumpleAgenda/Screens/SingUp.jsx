@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react-native';
 
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 export default function SingUp({navigation}) {
   return (
     <View style={styles.container}>
+
+      <Text style={styles.title}>REGISTRATE</Text>
       <TextInput
         style={styles.input}
         placeholder='Usuario'
@@ -14,7 +17,6 @@ export default function SingUp({navigation}) {
       <TextInput
         style={styles.input}
         placeholder='Correo'
-        secureTextEntry={true}
       />
        <TextInput
         style={styles.input}
@@ -28,7 +30,10 @@ export default function SingUp({navigation}) {
         secureTextEntry={true}
       />
 
-      <Button title='INGRESAR'></Button>
+    <TouchableOpacity>
+      <Button title='CREAR CUENTA' onPress={() => navigation.goBack()} style={styles.btnCrearCuenta} ></Button>
+
+    </TouchableOpacity>
     </View>
   );
 }
@@ -40,4 +45,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title:{
+    fontSize:40,
+    marginBottom:50,
+    color:"blue",
+    fontFamily:'Cathylise',
+
+  },input:{
+    width: '80%',
+    height: 40,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+  },
+  btnCrearCuenta:{
+    width:'80%'
+  }
+  
 });

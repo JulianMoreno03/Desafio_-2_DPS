@@ -8,22 +8,7 @@ import * as Font from 'expo-font'
 import SingUp from './SingUp';
 
 export default function Login({navigation}) {
-  
-  const [fontsLoaded, setFontsload] = useState(false);
 
-  useEffect(()=>{
-    if(!fontsLoaded){
-      loadFonst()
-    }
-  });
-  const loadFonst= async()=>{
-    await Font.loadAsync({
-      
-      'Cathylise': require('../assets/tipografia/Cathylise Janetson.otf')
-    })
-    
-  setFontsload(true);
-  }
 
   return(
     <View style={styles.container}>
@@ -38,7 +23,7 @@ export default function Login({navigation}) {
         secureTextEntry={true}
       />
       <TouchableOpacity>
-      <Button style={styles.btnLogin} title='INGRESAR' onPress={()=>navigation.navigate("Home")}></Button>
+      <Button style={styles.btnLogin} title='INGRESAR' onPress={()=>navigation.navigate("Salir")} ></Button>
 
       </TouchableOpacity>
 
@@ -47,7 +32,7 @@ export default function Login({navigation}) {
         <Text>¿Todavía no tiene una cuenta? </Text>
         
         <TouchableOpacity >
-        <Button title='Registrate aqui' onPress={()=>navigation.navigate("Crear Cuenta")}></Button>
+        <Button title='Registrate aquí' onPress={() => navigation.navigate("Crear Cuenta")} />
         </TouchableOpacity>
       </View>
 
@@ -62,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title:{
-    fontSize:50,
+    fontSize:45,
     marginBottom:50,
     color:"blue",
     fontFamily:'Cathylise',
@@ -78,6 +63,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   container_CrearCuenta:{
-    marginTop: '80%',
+    marginTop: '50%',
+    borderRadius:20,
   }
 });
