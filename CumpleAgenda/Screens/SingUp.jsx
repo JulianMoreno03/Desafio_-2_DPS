@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 //asyncStorage
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,6 +24,11 @@ export default function SingUp({ navigation }) {
     //guaramos los datos del usuario en AsynStorage
     try {
 
+      // Verificar si algún campo está vacío
+      if (!username || !email || !password || !confirmPassword) {
+        alert('Por favor complete todos los campos');
+        return;
+      }
       // Comprobar si ya existe un usuario con la misma dirección de correo electrónico
       const existingUser = await AsyncStorage.getItem(email);
       if (existingUser) {
@@ -34,6 +39,7 @@ export default function SingUp({ navigation }) {
       const userData = JSON.stringify({ username, email, password });
 
       await AsyncStorage.setItem(username, userData);
+
       alert('Usuario Creado Correctamente');
       //Si todo es correcto 
       // Redirigimos a la pantalla de inicio de sesión
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
 
   }, input: {
     width: '80%',
-    height: 40,
+    height: 50,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,

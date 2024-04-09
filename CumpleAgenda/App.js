@@ -12,11 +12,12 @@ import { useEffect, useState } from 'react';
 //TIPOGRAFIA
 import * as Font from 'expo-font' 
 //PANTALLAS
-import Login from "./Screens/Login"
+import Login from './Screens/Login'
 import SingUp from './Screens/SingUp';
 import DashBoard from "./Screens/DashBoard";
 import AgregarPersonas from './Screens/AgregarPersonas';
-
+import list from './Components/list';
+import VerListado from './Screens/VerListado';
 //El stack para el navigator
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,8 @@ export default function App() {
         <Stack.Screen name="Crear Cuenta" component={SingUp} />
         <Stack.Screen name="Salir" component={DashBoard} />
         <Stack.Screen name="Agregar Personas" component={AgregarPersonas} />
+        <Stack.Screen name="ver Listado" component={VerListado} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

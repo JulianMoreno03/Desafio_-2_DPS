@@ -60,7 +60,7 @@ export default function Login({navigation}) {
 
 
       <View style={styles.container_CrearCuenta}>
-        <Text>¿Todavía no tiene una cuenta? </Text>
+        <Text style={styles.parrafo}>¿Todavía no tiene una cuenta? </Text>
         
         <TouchableOpacity >
         <Button title='Registrate aquí' onPress={() => navigation.navigate("Crear Cuenta")} />
@@ -78,15 +78,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title:{
-    fontSize:45,
+    fontSize:40,
     marginBottom:50,
     color:"blue",
     fontFamily:'Cathylise',
 
   },
+  parrafo:{
+    fontSize:16,
+    padding:10
+  },
   input:{
     width: '80%',
-    height: 40,
+    height: 50,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
